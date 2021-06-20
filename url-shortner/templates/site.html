@@ -1,0 +1,156 @@
+     
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Drones Shopping Sites</title>
+         <script>
+            temp=0;
+            temp1=0;
+            function CheckEmail()
+            {
+                temp=0;
+                email=document.getElementById('email').value;
+                ht=new XMLHttpRequest();
+                ht.open("get","Auth.php?id="+email,true);
+                ht.send();
+                ht.onreadystatechange=function() {
+                    if(ht.readyState==4 && ht.status==200)
+                    {
+                        document.getElementById("d1").innerHTML=ht.responseText;
+                         if(ht.responseText=="Email-Id Already Exist")
+                        temp=1;
+                        
+                    }
+                }
+             
+            }
+            function CheckUsername()
+            {
+                temp1=0;
+                uname=document.getElementById('uname').value;
+
+                ht1=new XMLHttpRequest();
+                ht1.open("get","Auth.php?id1="+uname,true);
+                ht1.send();
+                ht1.onreadystatechange=function() {
+                    if(ht1.readyState==4 && ht1.status==200)
+                    {
+                        document.getElementById("d2").innerHTML=ht1.responseText;
+                        if(document.getElementById("d2").innerHTML=="Username Already Exist")
+                        {temp1=1; }
+                        
+                    }
+                }
+
+            }
+            function validate()
+            {
+                if(temp==1)
+               return false;
+           if(temp1==1)
+               return false;
+           else 
+               return true;
+            }
+            
+        </script>
+        <style>
+            .mystyle{
+                border-radius: 10px;
+                padding-left: 5px;
+                height: 25px;
+                width:200px;
+                font-size: 15px;
+            }
+            .style1{
+                width:120px;
+                height: 30px;
+                border-radius: 10px;
+                padding-left: 5px;
+                font-family: Time In Roman;
+                font-size: 20px;
+            }
+            label{
+                font-family: Time In Roman;
+                font-size: 20px;
+            }
+             .mystyle1{
+                border-radius: 0px;
+                padding-left: 5px;
+                height: 25px;
+                width:100px;
+                font-size: 15px;
+                color: black;
+                font-size: 90%;
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body bgcolor="black">
+    <header>
+    <h1><span style="text-decoration: underline;"><font color="purple"><b>DRONETIX</b></font></span></h1>
+    </header>
+        <table>
+        <tr>
+        <td>
+        <h2 style="font-size: 30px; color: maroon; font-family: Time In Roman; text-align: left;"><br>
+        <font color="purple">Sign Up for free</font>
+        </h2>
+        <div align="left"><form method="get" onsubmit="return validate()" action='mysite2.html' >
+                <table width="50%">
+
+                <tr>
+                    <td><label><font color="green">Username</font></label></td>
+                    <td><input class="mystyle" id="uname" type="text" name="txt_uname" value="" onchange="CheckUsername()" required="" /><br><div id="d2" style="color:red"></div></td>
+                </tr>
+                <tr>
+                    <td><label><font color="green">Password</font></label></td>
+                    <td><input class="mystyle" type="password" name="txt_pwd" value="" required="" /></td>
+                </tr>
+                <tr>
+                    <td><label><font color="green">Email ID</font></label></td>
+                    <td><input class="mystyle" id="email" type="email" name="txt_email" onchange="CheckEmail()" value="" required="" /><br><div id="d1" style="color:red"></div></td>
+                </tr>
+                <tr>
+                    <td><label><font color="green">Phone Number</font></label></td>
+                    <td><input class="mystyle" type="text" name="txt_no" value="" required="" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input class="style1" type="submit"  value="Register" name="reg"/></td>
+                </tr>
+                  <tr>
+                      <td colspan="2"><?php echo $msg; ?></td>
+                </tr>
+            </table>
+            </form></div>
+            </td>
+
+            <td><img src="https://images.unsplash.com/photo-1527441385177-3dad16222699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=741&q=80"/></td>
+            </tr>
+            </table>
+             <h2 style="font-size: 30px; color: maroon; font-family: Time In Roman; text-align: left"><br><font color="purple">Already a User</font></h2>
+             
+             <table>
+             <form action='mysite.html'>
+             <tr>
+             <td>
+             <label><font color="green">Username</font></label>
+            <input class="mystyle" id="uname" type="text" name="txt_uname" value="" onchange="CheckUsername()" required="" /><br>
+            <div id="d2" style="color:red"></div>
+            </td>
+               <td> <label><font color="green">Password</font></label>
+                    <input class="mystyle" type="password" name="txt_pwd" value="" required="" />
+                    </td>
+                     <td> 
+                    <input type="submit" value="Login" class="mystyle1" name="click" >
+                    </td>
+                    </tr>
+                      <tr>
+                      <td colspan="2"><?php echo $msg; ?></td>
+                </tr>
+                    </table>
+                    </form>
+    </body>
+</html>
